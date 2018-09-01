@@ -1,7 +1,7 @@
 public class FracCalcChkpt3 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("1_2/3 / -5_6/3"));
+		System.out.println(produceAnswer("5/6 + 1/6"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -47,6 +47,7 @@ public class FracCalcChkpt3 {
 			e = splitUpNum2Frac[0];
 			f = splitUpNum2Frac[1];
 		}
+		String finalAnswer = "1";
 		int iA = Integer.parseInt(a);
 		int iB = Integer.parseInt(b);
 		int iC = Integer.parseInt(c);
@@ -61,11 +62,21 @@ public class FracCalcChkpt3 {
 				String x = Integer.toString(finalWhole);
 				String y = Integer.toString(finalNum);
 				String z = Integer.toString(finalDen);
+				if (y.equals("0")) {
+					finalAnswer = x;
+				} else {
+					if (y.equals(z)) {
+						x = x + 1;
+						finalAnswer = x;
+					} else {
+						finalAnswer = x + "_" + y + "/" + z;
+					}
+				}
 
 			}
 
 		}
-		return a;
+		return finalAnswer;
 
 	}
 }

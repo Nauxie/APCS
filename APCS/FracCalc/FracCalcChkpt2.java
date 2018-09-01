@@ -1,7 +1,7 @@
 public class FracCalcChkpt2 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("1_2/3 / -5_6/3"));
+		System.out.println(produceAnswer("1_1/7 + 3_2/7"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -49,7 +49,7 @@ public class FracCalcChkpt2 {
 		}
 		//hello testing public to private
 
-		return //"fraction one: " + "whole:" + a + " numerator:" + b + " denominator:" + c + "\nfraction two: " +
+		return "fraction one: " + "whole:" + a + " numerator:" + b + " denominator:" + c + "\nfraction two: " +
 				"whole:" + d + " numerator:" + e + " denominator:" + f;
 
 	}
