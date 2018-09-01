@@ -47,6 +47,7 @@ public class FracCalcChkpt2 {
 			e = splitUpNum2Frac[0];
 			f = splitUpNum2Frac[1];
 		}
+		//hello testing public to private
 
 		return //"fraction one: " + "whole:" + a + " numerator:" + b + " denominator:" + c + "\nfraction two: " +
 				"whole:" + d + " numerator:" + e + " denominator:" + f;
