@@ -1,15 +1,55 @@
 public class FracCalcChkpt2 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("32 - 27/21"));
+		System.out.println(produceAnswer("1_2/3 / -5_6/3"));
 	}
 
 	public static String produceAnswer(String calc) {
 		String splitUp[] = calc.split(" ");
-		String splitUpNum1First[] = splitUp[0].split("");
-		
 
-		return splitUpNum1First[1];
-		
+		String a = "0";
+		String b = "0";
+		String c = "1";
+		String splitUpNum1Whole[] = splitUp[0].split("_");
+		a = splitUpNum1Whole[0];
+
+		if (splitUp[0].contains("_")) {
+			a = splitUpNum1Whole[0];
+			if (splitUpNum1Whole[1].contains("/")) {
+				String splitUpNum1Frac[] = splitUpNum1Whole[1].split("/");
+				b = splitUpNum1Frac[0];
+				c = splitUpNum1Frac[1];
+			}
+		}
+		if (splitUpNum1Whole[0].contains("/")) {
+			String splitUpNum1Frac[] = splitUpNum1Whole[0].split("/");
+			a = "0";
+			b = splitUpNum1Frac[0];
+			c = splitUpNum1Frac[1];
+		}
+		String d = "0";
+		String e = "0";
+		String f = "1";
+		String splitUpNum2Whole[] = splitUp[2].split("_");
+		d = splitUpNum2Whole[0];
+
+		if (splitUp[2].contains("_")) {
+			d = splitUpNum2Whole[0];
+			if (splitUpNum2Whole[1].contains("/")) {
+				String splitUpNum2Frac[] = splitUpNum2Whole[1].split("/");
+				e = splitUpNum2Frac[0];
+				f = splitUpNum2Frac[1];
+			}
+		}
+		if (splitUpNum2Whole[0].contains("/")) {
+			String splitUpNum2Frac[] = splitUpNum2Whole[0].split("/");
+			d = "0";
+			e = splitUpNum2Frac[0];
+			f = splitUpNum2Frac[1];
+		}
+
+		return //"fraction one: " + "whole:" + a + " numerator:" + b + " denominator:" + c + "\nfraction two: " +
+				"whole:" + d + " numerator:" + e + " denominator:" + f;
+
 	}
 }
