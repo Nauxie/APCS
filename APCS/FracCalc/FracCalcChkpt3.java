@@ -1,7 +1,7 @@
 public class FracCalcChkpt3 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("5/12 + 3/12"));
+		System.out.println(produceAnswer("-78 + 978"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -62,27 +62,38 @@ public class FracCalcChkpt3 {
 				if (iNum > iC) {
 					iWhole = iWhole + (iNum / iC);
 					iNum = iNum % iC;
-					if (iC % iNum != 0 && iNum != 1) {
+					if (iC % iNum != 0 || iNum != 0) {
+						if(iNum == 0) {
+							String stringWhole = Integer.toString(iWhole);
+							finalAnswer = stringWhole;
+						}
+						else {
 						String stringWhole = Integer.toString(iWhole);
 						String stringNum = Integer.toString(iNum);
 						String stringDen = Integer.toString(iC);
 						finalAnswer = stringWhole + "_" + stringNum + "/" + stringDen;
+						}
 
 					}
 
 				} else {
 
 					if (iWhole == 0) {
-						if (iC % iNum == 0 && iNum != 1) {
-							int i = 2;
-							while (iNum % i != 0 && iC % i != 0) {
-								i++;
-							}
+						int i = iC;
+						while (iNum % i != 0 || iC % i != 0) {
+							i--;
+
+						}
+						if (i != 1) {
 							iNum = iNum / i;
 							iC = iC / i;
-							String stringNum = Integer.toString(iNum);
-							String stringDen = Integer.toString(iC);
-							finalAnswer = stringNum + "/" + stringDen;
+							if (iNum == iC) {
+								finalAnswer = "1";
+							} else {
+								String stringNum = Integer.toString(iNum);
+								String stringDen = Integer.toString(iC);
+								finalAnswer = stringNum + "/" + stringDen;
+							}
 
 						} else {
 
@@ -91,7 +102,12 @@ public class FracCalcChkpt3 {
 							finalAnswer = stringNum + "/" + stringDen;
 
 						}
-					} else {
+					} else if (iNum == 0) {
+						String stringWhole = Integer.toString(iWhole);		
+						finalAnswer = stringWhole; 
+
+					}
+					else {
 						String stringWhole = Integer.toString(iWhole);
 						String stringNum = Integer.toString(iNum);
 						String stringDen = Integer.toString(iC);
