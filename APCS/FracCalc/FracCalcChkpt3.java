@@ -1,7 +1,7 @@
 public class FracCalcChkpt3 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("-24_1/3 * 0"));
+		System.out.println(produceAnswer("3/4 / 3/4"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -226,7 +226,7 @@ public class FracCalcChkpt3 {
 
 			}
 		} else if (splitUp[1].equals("*")) { // MULTIPLICATION SEQUENCE
-			if (iA == 0 || iD == 0) {
+			if ((iA == 0 && iB == 0) || (iD == 0 && iE == 0)) {
 				finalAnswer = "0";
 			} else {
 				int improperNum1 = 0;
@@ -282,7 +282,7 @@ public class FracCalcChkpt3 {
 				}
 			}
 		} else if (splitUp[1].equals("/")) { // DIVISION SEQUENCE
-			if (iA == 0 || iD == 0) {
+			if ((iA == 0 && iB == 0) || (iD == 0 && iE == 0)) {
 				finalAnswer = "0";
 			} else {
 				int improperNum1 = 0;
