@@ -1,7 +1,7 @@
 public class FracCalcChkpt3 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("-38_3/72 + -4_82/37"));
+		System.out.println(produceAnswer("3_2/4 * 4/3"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -132,10 +132,9 @@ public class FracCalcChkpt3 {
 						iNum = iB - iE;
 					} else if (d.startsWith("-") && !(a.startsWith("-"))) {
 						iNum = iE - iB;
-					} else if(d.startsWith("-") && a.startsWith("-")){
+					} else if (d.startsWith("-") && a.startsWith("-")) {
 						iNum = iB + iE;
-					}
-					else {
+					} else {
 						iNum = iB + iE;
 					}
 					int iDen = LCD;
@@ -158,13 +157,11 @@ public class FracCalcChkpt3 {
 							iWhole = iWhole - (iNum / iDen);
 						} else if (d.startsWith("-") && !(a.startsWith("-"))) {
 							iWhole = -iWhole + (iNum / iDen);
-						} else if(d.startsWith("-") && a.startsWith("-")){
+						} else if (d.startsWith("-") && a.startsWith("-")) {
 							iWhole = iWhole - (iNum / iDen);
-						}
-						else {
+						} else {
 							iWhole = iWhole + (iNum / iDen);
 						}
-						//iWhole = iWhole + (iNum / iDen);
 						iNum = iNum % iDen;
 						int i = iDen;
 						while (iNum % i != 0 || iDen % i != 0) {
@@ -227,6 +224,57 @@ public class FracCalcChkpt3 {
 
 				}
 
+			}
+		} else if (splitUp[1].equals("*")) { // MULTIPLICATION SEQUENCE
+			int improperNum1 = 0;
+			int improperNum2 = 0;
+			if (a.startsWith("-")) {
+				improperNum1 = iA * iC - iB;
+			} else {
+				improperNum1 = iA * iC + iB;
+			}
+			if (d.startsWith("-")) {
+				improperNum2 = iD * iF - iE;
+			}
+			else {
+				improperNum2 = iD * iF + iE;	
+			}
+			
+			int iNum = improperNum1 * improperNum2;
+			int iDen = iC * iF;
+			if (Math.abs(iNum) > iDen) {
+				int iWhole = iNum / iDen;
+				iNum = iNum % iDen;
+				int i = iDen;
+				while (iNum % i != 0 || iDen % i != 0) {
+					i--;
+				}
+				if (i != 1) {
+					iNum = iNum / i;
+					iDen = iDen / i;
+					if (iNum == 0) {
+						finalAnswer = iWhole + " " + improperNum1 + " " + improperNum2;
+					} else {
+						finalAnswer = iWhole + "_" + Math.abs(iNum) + "/" + iDen;
+					}
+				} else {
+					if (iNum == 0) {
+						finalAnswer = iWhole + "";
+					} else if (iWhole == 0) {
+						finalAnswer = iNum + "/" + iDen;
+					} else {
+						finalAnswer = iWhole + "_" + Math.abs(iNum) + "/" + iDen;
+					}
+				}
+			} else {
+				iNum = iNum % iDen;
+				int i = iDen;
+				while (iNum % i != 0 || iDen % i != 0) {
+					i--;
+				}
+				iNum = iNum / i;
+				iDen = iDen / i;
+				finalAnswer = iNum + "/" + iDen;
 			}
 		}
 		return finalAnswer;
