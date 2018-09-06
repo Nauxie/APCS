@@ -1,7 +1,7 @@
 public class FracCalcChkpt3 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("-78 + 978"));
+		System.out.println(produceAnswer("-38_3/72 + -4_82/37"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -47,7 +47,7 @@ public class FracCalcChkpt3 {
 			e = splitUpNum2Frac[0];
 			f = splitUpNum2Frac[1];
 		}
-		String finalAnswer = "1";
+		String finalAnswer = "45";
 		int iA = Integer.parseInt(a);
 		int iB = Integer.parseInt(b);
 		int iC = Integer.parseInt(c);
@@ -55,23 +55,29 @@ public class FracCalcChkpt3 {
 		int iE = Integer.parseInt(e);
 		int iF = Integer.parseInt(f);
 		if (splitUp[1].equals("+")) { // ADDITION SEQUENCE
-			if (iC == iF) {
+			if (iC == iF) { // COMMON DENOMINATOR SEQUENCE
+				int iNum = 0;
 				int iWhole = iA + iD;
-				int iNum = iB + iE;
+				if (a.startsWith("-") && !(d.startsWith("-"))) {
+					iNum = iB - iE;
+				} else if (d.startsWith("-") && !(a.startsWith("-"))) {
+					iNum = iE - iB;
+				} else {
+					iNum = iB + iE;
+				}
 
 				if (iNum > iC) {
 					iWhole = iWhole + (iNum / iC);
 					iNum = iNum % iC;
 					if (iC % iNum != 0 || iNum != 0) {
-						if(iNum == 0) {
+						if (iNum == 0) {
 							String stringWhole = Integer.toString(iWhole);
 							finalAnswer = stringWhole;
-						}
-						else {
-						String stringWhole = Integer.toString(iWhole);
-						String stringNum = Integer.toString(iNum);
-						String stringDen = Integer.toString(iC);
-						finalAnswer = stringWhole + "_" + stringNum + "/" + stringDen;
+						} else {
+							String stringWhole = Integer.toString(iWhole);
+							String stringNum = Integer.toString(iNum);
+							String stringDen = Integer.toString(iC);
+							finalAnswer = stringWhole + "_" + stringNum + "/" + stringDen;
 						}
 
 					}
@@ -103,11 +109,10 @@ public class FracCalcChkpt3 {
 
 						}
 					} else if (iNum == 0) {
-						String stringWhole = Integer.toString(iWhole);		
-						finalAnswer = stringWhole; 
+						String stringWhole = Integer.toString(iWhole);
+						finalAnswer = stringWhole;
 
-					}
-					else {
+					} else {
 						String stringWhole = Integer.toString(iWhole);
 						String stringNum = Integer.toString(iNum);
 						String stringDen = Integer.toString(iC);
@@ -116,10 +121,94 @@ public class FracCalcChkpt3 {
 					}
 				}
 
-			}
+			} else {
+				if (iA != 0 || iD != 0) {
+					int iWhole = iA + iD;
+					int LCD = iC * iF;
+					iB = iB * iF;
+					iE = iE * iC;
+					int iNum = iB + iE;
+					int iDen = LCD;
+					if (iNum < iDen) {
+						int i = iDen;
+						while (iNum % i != 0 || iDen % i != 0) {
+							i--;
 
+						}
+						if (i != 1) {
+							iNum = iNum / i;
+							iDen = iDen / i;
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						} else {
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						}
+
+					} else if (iNum > iDen) {
+						iWhole = iWhole + iNum / iDen;
+						iNum = iNum % iDen;
+						int i = iDen;
+						while (iNum % i != 0 || iDen % i != 0) {
+							i--;
+
+						}
+						if (i != 1) {
+							iNum = iNum / i;
+							iDen = iDen / i;
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						} else {
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						}
+
+					} else if (iNum == iDen) {
+						iWhole = iWhole + 1;
+						String stringWhole = Integer.toString(iWhole);
+						finalAnswer = stringWhole;
+
+					}
+
+				} else {
+					int iWhole = 0;
+					int LCD = iC * iF;
+					iB = iB * iF;
+					iE = iE * iC;
+					int iNum = iB + iE;
+					int iDen = LCD;
+					if (iNum < iDen) {
+						int i = iDen;
+						while (iNum % i != 0 || iDen % i != 0) {
+							i--;
+
+						}
+						if (i != 1) {
+							iNum = iNum / i;
+							iDen = iDen / i;
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						} else {
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						}
+
+					} else if (iNum > iDen) {
+						iWhole = iWhole + iNum / iDen;
+						iNum = iNum % iDen;
+						int i = iDen;
+						while (iNum % i != 0 || iDen % i != 0) {
+							i--;
+
+						}
+						if (i != 1) {
+							iNum = iNum / i;
+							iDen = iDen / i;
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						} else {
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						}
+
+					}
+
+				}
+
+			}
 		}
 		return finalAnswer;
-
 	}
 }
