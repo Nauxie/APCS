@@ -1,7 +1,7 @@
 public class FracCalcChkpt3 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("1/8 + 1/8"));
+		System.out.println(produceAnswer("5/12 + 3/12"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -69,21 +69,34 @@ public class FracCalcChkpt3 {
 						finalAnswer = stringWhole + "_" + stringNum + "/" + stringDen;
 
 					}
-					else {
-						
-					}
 
 				} else {
 
 					if (iWhole == 0) {
-						String stringNum = Integer.toString(iNum);
-						String stringDen = Integer.toString(iC);
-						finalAnswer = stringNum + "/" + stringDen;
+						if (iC % iNum == 0 && iNum != 1) {
+							int i = 2;
+							while (iNum % i != 0 && iC % i != 0) {
+								i++;
+							}
+							iNum = iNum / i;
+							iC = iC / i;
+							String stringNum = Integer.toString(iNum);
+							String stringDen = Integer.toString(iC);
+							finalAnswer = stringNum + "/" + stringDen;
+
+						} else {
+
+							String stringNum = Integer.toString(iNum);
+							String stringDen = Integer.toString(iC);
+							finalAnswer = stringNum + "/" + stringDen;
+
+						}
 					} else {
 						String stringWhole = Integer.toString(iWhole);
 						String stringNum = Integer.toString(iNum);
 						String stringDen = Integer.toString(iC);
 						finalAnswer = stringWhole + "_" + stringNum + "/" + stringDen;
+
 					}
 				}
 
