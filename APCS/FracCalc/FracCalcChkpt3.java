@@ -127,9 +127,19 @@ public class FracCalcChkpt3 {
 					int LCD = iC * iF;
 					iB = iB * iF;
 					iE = iE * iC;
-					int iNum = iB + iE;
+					int iNum = 0;
+					if (a.startsWith("-") && !(d.startsWith("-"))) {
+						iNum = iB - iE;
+					} else if (d.startsWith("-") && !(a.startsWith("-"))) {
+						iNum = iE - iB;
+					} else if(d.startsWith("-") && a.startsWith("-")){
+						iNum = iB + iE;
+					}
+					else {
+						iNum = iB + iE;
+					}
 					int iDen = LCD;
-					if (iNum < iDen) {
+					if (Math.abs(iNum) < iDen) {
 						int i = iDen;
 						while (iNum % i != 0 || iDen % i != 0) {
 							i--;
@@ -143,8 +153,18 @@ public class FracCalcChkpt3 {
 							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
 						}
 
-					} else if (iNum > iDen) {
-						iWhole = iWhole + iNum / iDen;
+					} else if (Math.abs(iNum) > iDen) {
+						if (a.startsWith("-") && !(d.startsWith("-"))) {
+							iWhole = iWhole - (iNum / iDen);
+						} else if (d.startsWith("-") && !(a.startsWith("-"))) {
+							iWhole = -iWhole + (iNum / iDen);
+						} else if(d.startsWith("-") && a.startsWith("-")){
+							iWhole = iWhole - (iNum / iDen);
+						}
+						else {
+							iWhole = iWhole + (iNum / iDen);
+						}
+						//iWhole = iWhole + (iNum / iDen);
 						iNum = iNum % iDen;
 						int i = iDen;
 						while (iNum % i != 0 || iDen % i != 0) {
