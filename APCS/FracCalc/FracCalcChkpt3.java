@@ -1,7 +1,7 @@
 public class FracCalcChkpt3 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("4_1/2 - 4_1/2"));
+		System.out.println(produceAnswer("-3_3/4 - 2_2/4"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -229,7 +229,7 @@ public class FracCalcChkpt3 {
 			if (iC == iF) {
 				int iNum = 0;
 				int iWhole = iA - iD;
-				if (a.startsWith("-") && !(a.startsWith("-"))) {
+				if (a.startsWith("-") && !(b.startsWith("-"))) {
 					iNum = -iB - iE;
 				} else if (!(a.startsWith("-")) && b.startsWith("-")) {
 					iNum = iB + iE;
@@ -238,9 +238,57 @@ public class FracCalcChkpt3 {
 				} else {
 					iNum = iB - iE;
 				}
-				finalAnswer = iWhole + "_" + iNum + "/" + iC;
+
+				if (Math.abs(iNum) < iC) {
+					int i = iC;
+					while (iNum % i != 0 || iC % i != 0) {
+						i--;
+					}
+					if (i != 1) {
+						iNum = iNum / i;
+						iC = iC / i;
+					}
+					if (iWhole == 0 && iNum == 0) {
+						finalAnswer = 0 + "";
+					} else if (iNum == 0 && iWhole != 0) {
+						finalAnswer = iWhole + "";
+
+					} else if (iWhole == 0 && iNum != 0) {
+						finalAnswer = iNum + "/" + iC;
+					} else {
+						finalAnswer = iWhole + "_" + iNum + "/" + iC;
+					}
+				} else if (Math.abs(iNum) >= iC) {
+					iWhole = iWhole + (iNum / iC);
+					iNum = iNum % iC;
+					int i = iC;
+					while (iNum % i != 0 || iC % i != 0) {
+						i--;
+					}
+					if (i != 1) {
+						iNum = iNum / i;
+						iC = iC / i;
+					}
+					if (iWhole == 0 && iNum == 0) {
+						finalAnswer = 0 + "";
+					} else if (iNum == 0 && iWhole != 0) {
+						finalAnswer = iWhole + "";
+
+					} else if (iWhole == 0 && iNum != 0) {
+						finalAnswer = iNum + "/" + iC;
+					} else {
+						finalAnswer = iWhole + "_" + Math.abs(iNum) + "/" + iC;
+					}
+
+				}
+
+			} else {
+				if (iA != 0 || iD != 0) {
+
+				}
 
 			}
+
 		} else if (splitUp[1].equals("*")) { // MULTIPLICATION SEQUENCE
 			if ((iA == 0 && iB == 0) || (iD == 0 && iE == 0)) {
 				finalAnswer = "0";
@@ -358,6 +406,7 @@ public class FracCalcChkpt3 {
 				}
 			}
 		}
+
 		return finalAnswer;
 	}
 }
