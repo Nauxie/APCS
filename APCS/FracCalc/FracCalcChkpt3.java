@@ -229,11 +229,11 @@ public class FracCalcChkpt3 {
 			if (iC == iF) {
 				int iNum = 0;
 				int iWhole = iA - iD;
-				if (a.startsWith("-") && !(b.startsWith("-"))) {
+				if (a.startsWith("-") && !(d.startsWith("-"))) {
 					iNum = -iB - iE;
-				} else if (!(a.startsWith("-")) && b.startsWith("-")) {
+				} else if (!(a.startsWith("-")) && d.startsWith("-")) {
 					iNum = iB + iE;
-				} else if (a.startsWith("-") & b.startsWith("-")) {
+				} else if (a.startsWith("-") & d.startsWith("-")) {
 					iNum = -iB + iE;
 				} else {
 					iNum = iB - iE;
@@ -256,9 +256,10 @@ public class FracCalcChkpt3 {
 					} else if (iWhole == 0 && iNum != 0) {
 						finalAnswer = iNum + "/" + iC;
 					} else {
-						finalAnswer = iWhole + "_" + iNum + "/" + iC;
+						finalAnswer = iWhole + "_" + Math.abs(iNum) + "/" + iC;
 					}
 				} else if (Math.abs(iNum) >= iC) {
+
 					iWhole = iWhole + (iNum / iC);
 					iNum = iNum % iC;
 					int i = iC;
@@ -284,6 +285,121 @@ public class FracCalcChkpt3 {
 
 			} else {
 				if (iA != 0 || iD != 0) {
+					int iWhole = iA - iD;
+					int LCD = iC * iF;
+					iB = iB * iF;
+					iE = iE * iC;
+					int iNum = 0;
+					if (a.startsWith("-") && !(d.startsWith("-"))) {
+						iNum = -iB - iE;
+					} else if (!(a.startsWith("-")) && d.startsWith("-")) {
+						iNum = iB + iE;
+					} else if (a.startsWith("-") & d.startsWith("-")) {
+						iNum = -iB + iE;
+					} else {
+						iNum = iB - iE;
+					}
+					int iDen = Math.abs(LCD);
+					int impropNum = iWhole * iDen + iNum;
+					if (Math.abs(impropNum) > iDen) {
+						iWhole = impropNum / iDen;
+						iNum = (impropNum % iDen);
+						int i = iDen;
+						while (iNum % i != 0 || iDen % i != 0) {
+							i--;
+						}
+						if (i != 1) {
+							iNum = iNum / i;
+							iDen = iDen / i;
+						}
+						if (iWhole == 0 && iNum == 0) {
+							finalAnswer = 0 + "";
+						} else if (iNum == 0 && iWhole != 0) {
+							finalAnswer = iWhole + "";
+
+						} else if (iWhole == 0 && iNum != 0) {
+							finalAnswer = iNum + "/" + iDen;
+						} else {
+							finalAnswer = iWhole + "_" + Math.abs(iNum) + "/" + iDen;
+						}
+
+					} else if (Math.abs(impropNum) < iDen) {
+						int i = iDen;
+						while (impropNum % i != 0 || iDen % i != 0) {
+							i--;
+						}
+						if (i != 1) {
+							impropNum = impropNum / i;
+							iDen = iDen / i;
+
+						}
+						finalAnswer = impropNum + "/" + iDen;
+
+					} else if (Math.abs(impropNum) == iDen) {
+						if (impropNum < 0) {
+							finalAnswer = "-1";
+						} else {
+							finalAnswer = "1";
+						}
+					}
+
+				} else {
+					int iWhole = 0;
+					int LCD = iC * iF;
+					iB = iB * iF;
+					iE = iE * iC;
+					int iNum = 0;
+					if (a.startsWith("-") && !(d.startsWith("-"))) {
+						iNum = -iB - iE;
+					} else if (!(a.startsWith("-")) && d.startsWith("-")) {
+						iNum = iB + iE;
+					} else if (a.startsWith("-") & d.startsWith("-")) {
+						iNum = -iB + iE;
+					} else {
+						iNum = iB - iE;
+					}
+					int iDen = Math.abs(LCD);
+					if (Math.abs(iNum) > iDen) {
+						iWhole = iNum / iDen;
+						iNum = (iNum % iDen);
+						int i = iDen;
+						while (iNum % i != 0 || iDen % i != 0) {
+							i--;
+						}
+						if (i != 1) {
+							iNum = iNum / i;
+							iDen = iDen / i;
+						}
+						if (iWhole == 0 && iNum == 0) {
+							finalAnswer = 0 + "";
+						} else if (iNum == 0 && iWhole != 0) {
+							finalAnswer = iWhole + "";
+
+						} else if (iWhole == 0 && iNum != 0) {
+							finalAnswer = iNum + "/" + iDen;
+						} else {
+							finalAnswer = iWhole + "_" + iNum + "/" + iDen;
+						}
+
+					} else if (Math.abs(iNum) < iDen) {
+						int i = iDen;
+						while (iNum % i != 0 || iDen % i != 0) {
+							i--;
+						}
+						if (i != 1) {
+							iNum = iNum / i;
+							iDen = iDen / i;
+
+						}
+						finalAnswer = iNum + "/" + iDen;
+
+					} else if (Math.abs(iNum) == iDen) {
+						if (iNum < 0) {
+							finalAnswer = "-1";
+						} else {
+							finalAnswer = "1";
+						}
+					}
 
 				}
 
