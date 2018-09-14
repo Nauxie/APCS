@@ -1,13 +1,14 @@
 public class FracCalcChkpt3 {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("1 + 3 + -3 - -3"));
+		System.out.println(produceAnswer("1_1/2 + 5/4"));
 	}
 
 	public static String produceAnswer(String calc) {
-		String splitUp[] = calc.split(" "); 
-		String finalAnswer = "445"; //assigns recognition value to return string
-		if (splitUp.length == 3) { //chooses between regular method or EC method
+		String splitUp[] = calc.split(" ");
+		String finalAnswer = "445"; // assigns recognition value to return string
+
+		if (true) { // chooses between regular method or EC method
 			String a = "0";
 			String b = "0";
 			String c = "1";
@@ -31,6 +32,7 @@ public class FracCalcChkpt3 {
 			String d = "0";
 			String e = "0";
 			String f = "1";
+
 			String splitUpNum2Whole[] = splitUp[2].split("_");
 			d = splitUpNum2Whole[0];
 
@@ -48,7 +50,7 @@ public class FracCalcChkpt3 {
 				e = splitUpNum2Frac[0];
 				f = splitUpNum2Frac[1];
 			}
-			
+
 			int iA = Integer.parseInt(a);
 			int iB = Integer.parseInt(b);
 			int iC = Integer.parseInt(c);
@@ -524,7 +526,7 @@ public class FracCalcChkpt3 {
 				}
 			}
 		} else { // EXTRA CREDIT
-			
+
 		}
 		return finalAnswer;
 	}
