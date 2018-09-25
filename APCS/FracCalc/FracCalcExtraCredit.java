@@ -1,7 +1,7 @@
 public class FracCalcExtraCredit {
 
 	public static void main(String[] args) {
-		System.out.println(produceAnswer("20 / 5 * -1 + 8"));
+		System.out.println(produceAnswer("1/3 + 1/3 + 1/3 + 1/3 + 69/43254 + 44/3 * 55/4 / 16/59"));
 	}
 
 	public static String produceAnswer(String calc) {
@@ -917,7 +917,7 @@ public class FracCalcExtraCredit {
 				if (Math.abs(iNum) > iDen) {
 					int iWhole = iNum / iDen;
 					iNum = iNum % iDen;
-					int i = iDen;
+					int i = Math.abs(iDen);
 					while (iNum % i != 0 || iDen % i != 0) {
 						i--;
 					}
@@ -1010,7 +1010,7 @@ public class FracCalcExtraCredit {
 					}
 				} else {
 					iNum = iNum % iDen;
-					int i = iDen;
+					int i = Math.abs(iDen);
 					while (iNum % i != 0 || iDen % i != 0) {
 						i--;
 					}
